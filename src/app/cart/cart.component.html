@@ -1,0 +1,26 @@
+<h3>ตะกร้าของคุณ</h3>
+
+<p>
+	<a routerLink="/shipping">การจัดส่ง</a>
+</p>
+
+<!-- items -->
+<div class="cart-item" *ngFor="let item of items">
+	<span>{{item.name}}</span>
+	<span>{{item.price | currency}}</span>
+</div>
+
+<!-- formGroup -->
+<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+	<div>
+		<label for="name">ชื่อ</label>
+		<input type="text" id="name" formControlName="name">
+  </div>
+
+		<div>
+			<label for="address">ที่อยู่</label>
+			<input type="text" id="address" formControlName="address">
+  </div>
+
+			<button class="button" type="submit">จ่ายเงิน</button>
+</form>
