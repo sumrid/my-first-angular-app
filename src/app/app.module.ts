@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
-import { ReactiveFormsModule } from "@angular/forms";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http"; // http client
 
 // รายการ component
@@ -16,6 +16,7 @@ import { ProductAlertsComponent } from './product-alerts/product-alerts.componen
 
 @NgModule({
   imports: [
+    FormsModule, // <<-- for ngModel
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,

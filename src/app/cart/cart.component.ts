@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnChanges } from "@angular/core";
 import { CartService } from "../cart.service";
 import { FormBuilder } from "@angular/forms";
 
@@ -7,9 +7,10 @@ import { FormBuilder } from "@angular/forms";
   templateUrl: "./cart.component.html",
   styleUrls: ["./cart.component.css"]
 })
-export class CartComponent implements OnInit {
+export class CartComponent implements OnInit, OnChanges {
   items = [];
   checkoutForm;
+  input: String;
 
   constructor(
     private cartService: CartService,
@@ -32,5 +33,11 @@ export class CartComponent implements OnInit {
 
     this.items = this.cartService.clearCart(); // cart ตะกร้า
     this.checkoutForm.reset(); // reset form
+  }
+
+  ngOnChanges(changes) {
+    for (let key in changes) {
+      console.log(key);
+    }
   }
 }

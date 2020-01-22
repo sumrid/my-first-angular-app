@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute } from "@angular/router"; // ต้องใช้เพื่อดึงข้อมูลจาก route
 
 import { products } from "../products";
 import { CartService } from "../cart.service";
@@ -20,10 +20,17 @@ export class ProductDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-      const id = params.get("productId");
-      this.product = products[id];
-    });
+    // ดึง params จาก route
+    // this.route.paramMap.subscribe(params => {
+    //   const id = params.get("productId");
+    //   this.product = products[id];
+    // });
+    const id = this.route.snapshot.paramMap.get("productId");
+    this.product = products[id];
+  }
+
+  getProduct() {
+    
   }
 
   addToCart(product) {

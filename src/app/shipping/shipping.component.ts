@@ -7,14 +7,19 @@ import { CartService } from "../cart.service"; // นำเข้า service
   styleUrls: ["./shipping.component.css"]
 })
 export class ShippingComponent implements OnInit {
-  shippingCosts;
+  shippingCosts: any;
 
   constructor(private cartService: CartService) {
     // นำ service ใส่เข้าไปในคลาส
   }
 
-  ngOnInit() {
-    // ดึงรูปแบบการส่ง
-    this.shippingCosts = this.cartService.getShippingPrices();
+  async ngOnInit() {
+    this.getShipping();
+  }
+
+  async getShipping() {
+    // ดึงวิธีการส่ง
+    this.shippingCosts = await this.cartService.getShippingPrices();
+    console.log(this.shippingCosts);
   }
 }
