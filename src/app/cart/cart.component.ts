@@ -1,6 +1,6 @@
 import { Component, OnInit, OnChanges } from "@angular/core";
 import { CartService } from "../cart.service";
-import { FormBuilder } from "@angular/forms";
+import { FormBuilder, FormGroup } from "@angular/forms";
 
 @Component({
   selector: "app-cart",
@@ -9,7 +9,7 @@ import { FormBuilder } from "@angular/forms";
 })
 export class CartComponent implements OnInit, OnChanges {
   items = [];
-  checkoutForm;
+  checkoutForm: FormGroup;
   input: String;
 
   constructor(
@@ -18,8 +18,8 @@ export class CartComponent implements OnInit, OnChanges {
   ) {
     // ทำการสร้าง form model
     this.checkoutForm = this.formBuilder.group({
-      name: "",
-      address: ""
+      name: [''],
+      address: ['']
     });
   }
 
@@ -28,7 +28,7 @@ export class CartComponent implements OnInit, OnChanges {
     this.items = this.cartService.getItems();
   }
 
-  onSubmit(customerData) {
+  onSubmit(customerData: any) {
     console.warn(`Your order has been submitted ${customerData}`);
 
     this.items = this.cartService.clearCart(); // cart ตะกร้า
